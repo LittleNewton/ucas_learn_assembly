@@ -5,7 +5,6 @@
 global _start
 
 section .text:
-
 _start:
     mov eax, 0x4
     mov ebx, 1
