@@ -1,5 +1,6 @@
 clean:
-	cd build && rm *
+	rm -fr build
+	mkdir build
 do:
 	nasm -f elf32 -o build/hello_world.o src/hello_world.asm
 	ld -m elf_i386 -o build/hello_world build/hello_world.o
@@ -8,7 +9,7 @@ do:
 test:
 	nasm -f elf32 -o build/test.o src/test.asm
 	#  👇 -e 指的应该是 Entry，把 _main 作为程序的入口
-	ld -e _main -m elf_i386 -o build/test vtest.o
+	ld -e _main -m elf_i386 -o build/test build/test.o
 
 .PHONY: add_sum
 add_sum:
