@@ -26,3 +26,24 @@ valid output formats for -f are (`*' denotes default):
     macho     MACHO (short name for MACHO32)
     win       WIN (short name for WIN32)
 ```
+
+1. 安装了 gcc 和 g++ 工具
+
+``` bash
+sudo apt install gcc-multilib g++-multilib nasm
+```
+
+如果 asm 源代码为 `src/Source.asm`，那么编译命令如下
+
+```
+nasm -f elf32 -o build/Source.o src/Source.asm
+ld -e _main -m elf_i386 -o build/Source build/Source.o
+```
+
+特别地，如果是 64 位的源代码，需要如下命令
+
+```
+nasm -f elf64 -o build/Source.o src/Source.asm
+#  👇 -e 指的应该是 Entry，把 _main 作为程序的入口
+ld -e _main -m elf_x86_64 -o build/Source build/Source.o
+```

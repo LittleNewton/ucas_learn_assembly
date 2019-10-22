@@ -1,7 +1,7 @@
-global _start
+global _main
 
 section .text
-_start:
+_main:
     mov eax, 0x4
     mov ebx, 1
     mov ecx, message
